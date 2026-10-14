@@ -1,262 +1,913 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cocoa Royale | Chocolate Factory</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:#fff8ef;color:#321810}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;font:inherit}
-header{background:#29130d;color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.logo{font:700 27px 'Playfair Display',serif}
-.logo span{color:#e6bd79}
-nav{display:flex;gap:20px;flex-wrap:wrap;font-size:13px}
-nav a:hover{color:#e6bd79}
-.cart{background:#e6bd79;border:0;padding:11px 16px;border-radius:4px;font-weight:bold}
-.hero{min-height:540px;display:flex;align-items:center;padding:70px 8%;color:white;background:linear-gradient(90deg,#210e0bed,#210e0b60),url('https://images.unsplash.com/photo-1548907040-4d42faa9c7b2?auto=format&fit=crop&w=1600&q=85') center/cover}
-.hero div{max-width:650px}
-.eyebrow{color:#e6bd79;letter-spacing:3px;font-size:12px;font-weight:bold}
-h1,h2,h3{font-family:'Playfair Display',serif}
-h1{font-size:clamp(43px,7vw,76px);line-height:1.12;margin:20px 0}
-h1 span{color:#e6bd79}
-.hero p{line-height:1.9;color:#f3e4d8}
-.btn{display:inline-block;background:#e6bd79;color:#29130d;padding:13px 20px;margin-top:25px;border:0;border-radius:3px;font-weight:bold}
-.benefits{background:#49271c;color:white;display:grid;grid-template-columns:repeat(4,1fr);gap:15px;text-align:center;padding:25px 4%;font-size:13px}
-.benefits strong{display:block;color:#e6bd79;margin-bottom:5px}
-section{padding:65px 6%}
-.heading{text-align:center;margin-bottom:35px}
-.heading h2{font-size:clamp(30px,4vw,43px);margin:12px 0}
-.heading p{font-size:14px;color:#826b5d}
-.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-bottom:28px}
-.filters button{padding:9px 14px;border:1px solid #d8c4ad;border-radius:25px;background:transparent;font-size:12px}
-.filters button.active,.filters button:hover{background:#321810;color:white}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.card{background:white;border:1px solid #eddfd0;border-radius:6px;overflow:hidden}
-.card img{width:100%;height:205px;object-fit:cover;background:#ead8c4}
-.card-info{padding:15px}
-.tag{font-size:10px;color:#97703e;letter-spacing:1px}
-.card h3{font-size:18px;margin:8px 0}
-.card p{font-size:12px;color:#806b60;line-height:1.6}
-.price-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:15px}
-.price{font-weight:bold;font-size:19px;color:#321810}
-.add{background:#321810;color:white;border:0;border-radius:3px;padding:10px;font-size:11px}
-.add:hover{background:#70442e}
-.story{background:#f0dfcc;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.story img{width:100%;height:360px;object-fit:cover;border-radius:5px}
-.story h2{font-size:38px;margin:15px 0}
-.story p{font-size:14px;line-height:1.9;color:#765e50;margin-bottom:14px}
-.gift{text-align:center;color:white;background:linear-gradient(#29130de8,#29130de8),url('https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=1500&q=85') center/cover;padding:75px 8%}
-.gift h2{font-size:clamp(32px,5vw,48px);margin:15px 0}
-.gift p{max-width:600px;margin:auto;line-height:1.8;color:#ead8c8}
-.details{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.details article{padding:22px;background:white;border:1px solid #eddfd0}
-.details h3{margin-bottom:10px}
-.details p{font-size:13px;line-height:1.8;color:#806b60}
-.faq{max-width:750px;margin:auto}
-details{padding:18px 0;border-bottom:1px solid #dfcdbb}
-summary{cursor:pointer;font-weight:bold}
-details p{padding-top:12px;color:#806b60;font-size:13px}
-footer{background:#29130d;color:white;padding:45px 6% 20px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}
-footer h3{color:#e6bd79;margin-bottom:12px}
-footer p,footer a{font-size:12px;color:#ddc8b8;line-height:2}
-footer a{display:block}
-.copy{text-align:center;border-top:1px solid #ffffff25;margin-top:30px;padding-top:18px;font-size:11px;color:#ddc8b8}
-#toast{position:fixed;bottom:20px;right:20px;background:#29130d;color:white;padding:15px;border-left:4px solid #e6bd79;display:none;max-width:90%;z-index:10}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.benefits{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){header{padding:15px 4%}.logo{font-size:22px}nav{gap:12px}.hero{padding:55px 6%;min-height:480px}section{padding:48px 5%}.grid{gap:12px}.card img{height:145px}.card-info{padding:10px}.card h3{font-size:15px}.price-row{align-items:flex-start;flex-direction:column}.add{width:100%}.story{grid-template-columns:1fr}.story img{height:250px}.details,.footer-grid{grid-template-columns:1fr}}
-</style>
+    <title>Cocoa Royale | Luxury Chocolates & Desserts</title>
+
+    <meta name="description"
+          content="Discover handcrafted chocolates, Dubai Kunafa chocolate,
+          brownies, cakes and donuts at Cocoa Royale.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #741c25;
+            --dark-red: #4c1018;
+            --cream: #fff7e9;
+            --gold: #c49a55;
+            --brown: #3d211b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--brown);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .announcement {
+            background: var(--dark-red);
+            color: var(--cream);
+            text-align: center;
+            padding: 9px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+        }
+
+        header {
+            background: var(--cream);
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #eadbc4;
+        }
+
+        .logo {
+            color: var(--red);
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .logo span {
+            display: block;
+            color: var(--gold);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 600;
+            transition: color .3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .nav-button,
+        .button {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 13px 25px;
+            border: 1px solid var(--red);
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: .3s;
+        }
+
+        .nav-button:hover,
+        .button:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 580px;
+            display: flex;
+            align-items: center;
+            padding: 75px 8%;
+            color: white;
+            background:
+                linear-gradient(90deg,
+                    rgba(49, 12, 15, .95) 0%,
+                    rgba(49, 12, 15, .77) 48%,
+                    rgba(49, 12, 15, .10) 100%),
+                url("https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=1800&q=85")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 620px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.13;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #e9c78e;
+            font-style: italic;
+        }
+
+        .hero p {
+            color: #f7e8d6;
+            max-width: 470px;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .button.gold {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark-red);
+            margin-left: 10px;
+        }
+
+        .button.gold:hover {
+            background: #dfb76e;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: var(--red);
+            color: white;
+            padding: 27px 5%;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: #efd9cb;
+            font-size: 12px;
+        }
+
+        .section {
+            padding: 85px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .section-heading h2 {
+            color: var(--red);
+            font-size: clamp(30px, 4vw, 45px);
+            margin: 10px 0;
+        }
+
+        .section-heading p {
+            max-width: 600px;
+            margin: auto;
+            color: #79675d;
+            font-size: 14px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #eee0cd;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(70, 25, 15, .12);
+        }
+
+        .product-card img {
+            height: 245px;
+        }
+
+        .product-info {
+            padding: 19px;
+        }
+
+        .tag {
+            color: #a47a39;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .product-info h3 {
+            color: var(--red);
+            font-size: 20px;
+            margin: 7px 0;
+        }
+
+        .product-info p {
+            color: #806f64;
+            font-size: 12px;
+            min-height: 42px;
+        }
+
+        .price {
+            color: var(--red);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 12px 0;
+        }
+
+        .small-button {
+            display: block;
+            text-align: center;
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 9px;
+            font-size: 11px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .small-button:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        .center {
+            text-align: center;
+            margin-top: 38px;
+        }
+
+        .collection {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .collection-card {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            color: white;
+        }
+
+        .collection-card img {
+            height: 100%;
+            transition: transform .5s;
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .collection-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 20%, rgba(35, 8, 10, .85));
+        }
+
+        .collection-text {
+            position: absolute;
+            z-index: 1;
+            bottom: 25px;
+            left: 25px;
+            right: 20px;
+        }
+
+        .collection-text h3 {
+            font-size: 29px;
+        }
+
+        .collection-text p {
+            font-size: 13px;
+            color: #f7e5d4;
+        }
+
+        .story {
+            background: #f2e5d2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .story img {
+            height: 450px;
+        }
+
+        .story-content h2 {
+            color: var(--red);
+            font-size: 42px;
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        .story-content p {
+            color: #6e594d;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border: 1px solid #eddfcc;
+        }
+
+        .stars {
+            color: #bd8b37;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            font-size: 14px;
+            color: #69564b;
+            margin-bottom: 18px;
+        }
+
+        .review-card h3 {
+            color: var(--red);
+            font-size: 17px;
+        }
+
+        .review-card small {
+            color: #8c7a6d;
+        }
+
+        .contact {
+            background: var(--red);
+            color: white;
+            text-align: center;
+            padding: 75px 7%;
+        }
+
+        .contact h2 {
+            font-size: 42px;
+            margin: 12px 0;
+        }
+
+        .contact p {
+            color: #f1dcd2;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact .button {
+            background: var(--gold);
+            color: var(--dark-red);
+            border-color: var(--gold);
+        }
+
+        footer {
+            background: #321016;
+            color: #f5e4d5;
+            padding: 45px 7% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 30px;
+        }
+
+        footer h3 {
+            color: #e6c28c;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        footer p,
+        footer a {
+            font-size: 12px;
+            color: #e4cfc4;
+        }
+
+        footer a:hover {
+            color: var(--gold);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .copyright {
+            border-top: 1px solid #694047;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 11px;
+        }
+
+        @media (max-width: 1000px) {
+            .products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .story {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero {
+                min-height: 540px;
+                padding: 60px 6%;
+                background-position: 60% center;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .hero .button {
+                margin: 5px 5px 5px 0;
+            }
+
+            .products-grid,
+            .collection,
+            .reviews,
+            .story,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 5%;
+            }
+
+            .product-card img {
+                height: 270px;
+            }
+
+            .collection-card {
+                height: 320px;
+            }
+
+            .story img {
+                height: 300px;
+            }
+
+            .story-content h2,
+            .contact h2 {
+                font-size: 34px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<header>
-  <a class="logo" href="#">COCOA <span>ROYALE.</span></a>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#products">Chocolates</a>
-    <a href="#about">Our Factory</a>
-    <a href="#gifts">Gift Boxes</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <button class="cart" onclick="showCart()">🛍 Cart (<span id="count">0</span>)</button>
-</header>
 
-<main>
-<section class="hero" id="home">
-  <div>
-    <span class="eyebrow">WELCOME TO A WORLD OF CHOCOLATE</span>
-    <h1>Happiness Is<br>Made Of <span>Chocolate.</span></h1>
-    <p>Discover delicious Dubai kunafa chocolate, chocolate-dipped wafers, creamy milk chocolate, rich dark chocolate and luxurious gift boxes. Find your next favourite treat!</p>
-    <a href="#products" class="btn">SHOP CHOCOLATES ↗</a>
-  </div>
-</section>
-
-<div class="benefits">
-  <div><strong>🍫 Premium Treats</strong>Chocolate for every craving</div>
-  <div><strong>✨ Unique Flavours</strong>Classics and new favourites</div>
-  <div><strong>🎁 Beautiful Gifts</strong>Perfect for celebrations</div>
-  <div><strong>♡ Made to Share</strong>Sweeten every moment</div>
-</div>
-
-<section id="products">
-  <div class="heading">
-    <span class="eyebrow">EXPLORE OUR COLLECTION</span>
-    <h2>Our Signature Chocolates</h2>
-    <p>Sample prices in Indian Rupees. Update prices and weights to match your products.</p>
-  </div>
-
-  <div class="filters">
-    <button class="active" data-filter="All">All Chocolates</button>
-    <button data-filter="Dubai Special">Dubai Kunafa</button>
-    <button data-filter="Wafers">Dipped Wafers</button>
-    <button data-filter="Milk Chocolate">Milk Chocolate</button>
-    <button data-filter="Dark Chocolate">Dark Chocolate</button>
-    <button data-filter="White Chocolate">White Chocolate</button>
-    <button data-filter="Truffles">Truffles</button>
-    <button data-filter="Gift Boxes">Gift Boxes</button>
-  </div>
-
-  <div class="grid" id="productGrid"></div>
-</section>
-
-<section class="story" id="about">
-  <img src="https://images.unsplash.com/photo-1575377427642-087cf684f29d?auto=format&fit=crop&w=1000&q=85" alt="Chocolate confectionery">
-  <div>
-    <span class="eyebrow">OUR STORY</span>
-    <h2>A Passion For Perfect Chocolate.</h2>
-    <p>Welcome to Cocoa Royale, a chocolate brand inspired by creativity, flavour and the happiness of sharing something sweet.</p>
-    <p>Our planned collection brings together traditional chocolate favourites and exciting modern creations, from crunchy wafers to pistachio-filled Dubai-inspired bars.</p>
-    <p>We believe every chocolate should feel special, whether you are enjoying a treat yourself or giving a gift to someone you love.</p>
-    <a class="btn" href="#contact">CONTACT OUR FACTORY</a>
-  </div>
-</section>
-
-<section>
-  <div class="heading">
-    <span class="eyebrow">THE COCOA ROYALE EXPERIENCE</span>
-    <h2>Something For Every Occasion</h2>
-  </div>
-  <div class="details">
-    <article><h3>🍫 Our Collection</h3><p>Milk, dark and white chocolate, Dubai-inspired kunafa bars, dipped wafers, truffles and assorted chocolates.</p></article>
-    <article><h3>🎁 Gifts & Celebrations</h3><p>Showcase your available gift boxes, birthday hampers, wedding favours and corporate chocolate orders.</p></article>
-    <article><h3>📦 Delivery & Storage</h3><p>Add your delivery locations, shipping fees, order timelines and recommended storage instructions.</p></article>
-  </div>
-</section>
-
-<section class="gift" id="gifts">
-  <span class="eyebrow">GIVE SOMETHING DELICIOUS</span>
-  <h2>Every Celebration Deserves Chocolate.</h2>
-  <p>Make birthdays, anniversaries, weddings and festivals extra special with assorted chocolate boxes and premium gifts.</p>
-  <a class="btn" href="#products">EXPLORE OUR GIFT COLLECTION ↗</a>
-</section>
-
-<section>
-  <div class="heading">
-    <span class="eyebrow">HELP & INFORMATION</span>
-    <h2>Frequently Asked Questions</h2>
-  </div>
-  <div class="faq">
-    <details><summary>Are the listed prices final?</summary><p>No. These are sample prices in Indian Rupees. Confirm actual prices, package sizes, taxes and shipping charges before publishing.</p></details>
-    <details><summary>Can I order chocolates online?</summary><p>This website has a demonstration cart. A real ordering system requires checkout and payment integration.</p></details>
-    <details><summary>Do you provide gift packaging?</summary><p>Update this section with the gift packaging options your factory actually offers.</p></details>
-    <details><summary>Where can I find ingredient and allergen details?</summary><p>Add verified ingredients and allergen information for each product before selling it to customers.</p></details>
-  </div>
-</section>
-</main>
-
-<footer id="contact">
-  <div class="footer-grid">
-    <div><a class="logo" href="#">COCOA <span>ROYALE.</span></a><p>Making life's sweetest moments even sweeter.</p></div>
-    <div><h3>Quick Links</h3><a href="#home">Home</a><a href="#products">Shop Chocolates</a><a href="#about">Our Story</a><a href="#gifts">Gift Boxes</a></div>
-    <div><h3>Contact Us</h3><p>Email: hello@yourdomain.com</p><p>Phone: +91 XXXXX XXXXX</p><p>Address: Add your factory address</p><p>Instagram: Add your profile link</p></div>
-  </div>
-  <div class="copy">© <span id="year"></span> Cocoa Royale. All rights reserved.</div>
-</footer>
-
-<div id="toast" role="status"></div>
-
-<script>
-const products = [
- {id:1,name:"Dubai Pistachio Kunafa Chocolate",category:"Dubai Special",price:349,weight:"100 g (sample)",tag:"BESTSELLER",desc:"Pistachio-inspired filling, crispy kunafa and chocolate.",img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=650&q=80"},
- {id:2,name:"Chocolate-Dipped Wafers",category:"Wafers",price:199,weight:"Pack (weight to confirm)",tag:"CRUNCHY",desc:"Crispy wafer layers coated in chocolate.",img:"https://images.unsplash.com/photo-1548907040-4d42faa9c7b2?auto=format&fit=crop&w=650&q=80"},
- {id:3,name:"Classic Milk Chocolate",category:"Milk Chocolate",price:149,weight:"80 g (sample)",tag:"CLASSIC",desc:"Smooth and creamy milk chocolate.",img:"https://images.unsplash.com/photo-1575377427642-087cf684f29d?auto=format&fit=crop&w=650&q=80"},
- {id:4,name:"Intense Dark Chocolate",category:"Dark Chocolate",price:179,weight:"80 g (sample)",tag:"RICH & BOLD",desc:"Deep cocoa flavour for dark chocolate lovers.",img:"https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=650&q=80"},
- {id:5,name:"Velvet White Chocolate",category:"White Chocolate",price:169,weight:"80 g (sample)",tag:"SILKY",desc:"Sweet, creamy white chocolate.",img:"https://images.unsplash.com/photo-1548907040-4d42faa9c7b2?auto=format&fit=crop&w=650&q=80"},
- {id:6,name:"Hazelnut Chocolate Truffles",category:"Truffles",price:299,weight:"Box (weight to confirm)",tag:"INDULGENT",desc:"Delicious bite-sized chocolate treats.",img:"https://images.unsplash.com/photo-1575377427642-087cf684f29d?auto=format&fit=crop&w=650&q=80"},
- {id:7,name:"Luxury Assorted Gift Box",category:"Gift Boxes",price:599,weight:"Assorted box",tag:"GIFT FAVOURITE",desc:"A beautiful assortment of chocolate treats.",img:"https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=650&q=80"},
- {id:8,name:"Caramel Crunch Chocolate",category:"Milk Chocolate",price:229,weight:"100 g (sample)",tag:"CRUNCHY",desc:"Chocolate with a caramel-inspired crunch.",img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=650&q=80"},
- {id:9,name:"Pistachio White Chocolate",category:"White Chocolate",price:249,weight:"100 g (sample)",tag:"SPECIAL",desc:"Creamy white chocolate with pistachio flavour.",img:"https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=650&q=80"},
- {id:10,name:"Dark Cocoa Truffles",category:"Truffles",price:279,weight:"Box (weight to confirm)",tag:"COCOA LOVERS",desc:"Rich chocolate bites for an indulgent treat.",img:"https://images.unsplash.com/photo-1575377427642-087cf684f29d?auto=format&fit=crop&w=650&q=80"},
- {id:11,name:"Kunafa Wafer Bites",category:"Wafers",price:259,weight:"Pack (weight to confirm)",tag:"MUST TRY",desc:"Crunchy wafer-inspired chocolate bites.",img:"https://images.unsplash.com/photo-1548907040-4d42faa9c7b2?auto=format&fit=crop&w=650&q=80"},
- {id:12,name:"Celebration Chocolate Box",category:"Gift Boxes",price:799,weight:"Assorted box",tag:"PREMIUM GIFT",desc:"A chocolate assortment for special occasions.",img:"https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=650&q=80"}
-];
-
-let cart = [];
-let filter = "All";
-const grid = document.getElementById("productGrid");
-
-function money(n){
- return new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n);
-}
-
-function render(){
- const list=products.filter(p=>filter==="All"||p.category===filter);
- grid.innerHTML=list.map(p=>`
-  <article class="card">
-   <img src="${p.img}" alt="${p.name}" loading="lazy">
-   <div class="card-info">
-    <span class="tag">${p.tag}</span>
-    <h3>${p.name}</h3>
-    <p>${p.desc}</p>
-    <p style="margin-top:8px">${p.weight}</p>
-    <div class="price-row">
-     <span class="price">${money(p.price)}</span>
-     <button class="add" data-id="${p.id}">+ ADD</button>
+    <div class="announcement">
+        A LITTLE LUXURY IN EVERY BITE · HANDCRAFTED WITH LOVE
     </div>
-   </div>
-  </article>`).join("");
-}
 
-document.querySelectorAll("[data-filter]").forEach(btn=>{
- btn.addEventListener("click",()=>{
-  filter=btn.dataset.filter;
-  document.querySelectorAll(".filters button").forEach(b=>b.classList.toggle("active",b===btn));
-  render();
- });
-});
+    <header>
+        <a href="index.html" class="logo">
+            COCOA ROYALE
+            <span>CHOCOLATES & PATISSERIE</span>
+        </a>
 
-grid.addEventListener("click",e=>{
- const btn=e.target.closest("[data-id]");
- if(!btn)return;
- const product=products.find(p=>p.id===Number(btn.dataset.id));
- cart.push(product);
- document.getElementById("count").textContent=cart.length;
- const toast=document.getElementById("toast");
- toast.textContent=product.name+" added to cart!";
- toast.style.display="block";
- clearTimeout(window.toastTimer);
- window.toastTimer=setTimeout(()=>toast.style.display="none",2500);
-});
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="#collections">COLLECTIONS</a>
+            <a href="products.html">OUR MENU</a>
+            <a href="#story">OUR STORY</a>
+            <a href="#reviews">REVIEWS</a>
+            <a href="#contact" class="nav-button">ORDER NOW</a>
+        </nav>
+    </header>
 
-function showCart(){
- if(!cart.length){alert("Your cart is empty!");return;}
- const grouped={};
- cart.forEach(p=>{
-  if(!grouped[p.id])grouped[p.id]={...p,qty:0};
-  grouped[p.id].qty++;
- });
- const lines=Object.values(grouped).map(p=>`${p.name} x ${p.qty} = ${money(p.price*p.qty)}`);
- const total=cart.reduce((sum,p)=>sum+p.price,0);
- alert("YOUR CHOCOLATE CART\n\n"+lines.join("\n")+"\n\nTOTAL: "+money(total)+"\n\nDemo only: payment checkout is not connected.");
-}
+    <main>
 
-document.getElementById("year").textContent=new Date().getFullYear();
-render();
-</script>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">THE ART OF FINE CHOCOLATE</span>
+
+                <h1>
+                    Made to Melt.<br>
+                    <span>Born to Delight.</span>
+                </h1>
+
+                <p>
+                    Discover the irresistible world of handcrafted chocolates,
+                    luxurious Dubai Kunafa delights, freshly baked cakes and
+                    heavenly desserts. Every bite tells a delicious story.
+                </p>
+
+                <a href="products.html" class="button">
+                    EXPLORE OUR MENU
+                </a>
+
+                <a href="#story" class="button gold">
+                    OUR STORY
+                </a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>✦ Crafted with Care</h3>
+                <p>Thoughtfully prepared chocolate creations.</p>
+            </div>
+
+            <div class="feature">
+                <h3>✦ Premium Flavours</h3>
+                <p>Explore delightful chocolate combinations.</p>
+            </div>
+
+            <div class="feature">
+                <h3>✦ Gifts with Love</h3>
+                <p>Sweet surprises for your special people.</p>
+            </div>
+
+            <div class="feature">
+                <h3>✦ Made for Moments</h3>
+                <p>Desserts for celebrations and everyday joy.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <span class="eyebrow">THE SIGNATURE COLLECTION</span>
+                <h2>Our Finest Chocolates</h2>
+                <p>
+                    From creamy classics to indulgent nut-filled creations,
+                    discover your next favourite treat.
+                </p>
+            </div>
+
+            <div class="products-grid">
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate dessert and brownie"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Bestseller</span>
+                        <h3>Dubai Kunafa Chocolate</h3>
+                        <p>
+                            A rich chocolate shell with pistachio cream
+                            and crispy kunafa-inspired filling.
+                        </p>
+                        <div class="price">₹299</div>
+                        <a href="products.html#dubai"
+                           class="small-button">DISCOVER MORE</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85"
+                        alt="Rich chocolate cake"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Rich & Fudgy</span>
+                        <h3>Chocolate Brownie</h3>
+                        <p>
+                            A decadent chocolate treat with a rich,
+                            fudgy centre.
+                        </p>
+                        <div class="price">₹99</div>
+                        <a href="products.html#brownies"
+                           class="small-button">DISCOVER MORE</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=700&q=85"
+                        alt="Assorted chocolate treats"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Classic Favourite</span>
+                        <h3>Milk Chocolate</h3>
+                        <p>
+                            Smooth, creamy chocolate for everyday
+                            indulgence.
+                        </p>
+                        <div class="price">₹149</div>
+                        <a href="products.html#bars"
+                           class="small-button">DISCOVER MORE</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate and nuts"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Nutty Indulgence</span>
+                        <h3>Pistachio Chocolate</h3>
+                        <p>
+                            Delicious chocolate paired with the
+                            distinctive flavour of pistachios.
+                        </p>
+                        <div class="price">₹229</div>
+                        <a href="products.html#special"
+                           class="small-button">DISCOVER MORE</a>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="center">
+                <a href="products.html" class="button">
+                    VIEW ALL PRODUCTS
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="collections">
+            <div class="section-heading">
+                <span class="eyebrow">A WORLD OF SWEETNESS</span>
+                <h2>Explore Our Collections</h2>
+                <p>
+                    Little moments become extraordinary with the
+                    right dessert.
+                </p>
+            </div>
+
+            <div class="collection">
+
+                <a href="products.html#cakes" class="collection-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85"
+                        alt="Chocolate celebration cake"
+                        loading="lazy">
+
+                    <div class="collection-text">
+                        <h3>Signature Cakes</h3>
+                        <p>Celebrate every beautiful moment.</p>
+                    </div>
+                </a>
+
+                <a href="products.html#donuts" class="collection-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=1000&q=85"
+                        alt="Decorated donuts"
+                        loading="lazy">
+
+                    <div class="collection-text">
+                        <h3>Dreamy Donuts</h3>
+                        <p>Colourful, delicious little joys.</p>
+                    </div>
+                </a>
+
+                <a href="products.html#wafer" class="collection-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=1000&q=85"
+                        alt="Chocolate confectionery"
+                        loading="lazy">
+
+                    <div class="collection-text">
+                        <h3>Chocolate Delights</h3>
+                        <p>Discover your perfect chocolate treats.</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="section story" id="story">
+
+            <div>
+                <img
+                    src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=1100&q=85"
+                    alt="Chocolate ingredients and chocolate treats"
+                    loading="lazy">
+            </div>
+
+            <div class="story-content">
+                <span class="eyebrow">OUR SWEET LITTLE WORLD</span>
+
+                <h2>More Than Chocolate.<br>A Beautiful Experience.</h2>
+
+                <p>
+                    At Cocoa Royale, we believe chocolate is more than
+                    a dessert. It is a way to celebrate love, friendship,
+                    achievements and the little joys of everyday life.
+                </p>
+
+                <p>
+                    Our collection brings together timeless chocolate
+                    favourites, creative fillings, pistachio delights,
+                    crunchy wafer treats, delicious brownies, celebration
+                    cakes and tempting donuts.
+                </p>
+
+                <p>
+                    Whether you are choosing a personal treat, a birthday
+                    surprise or a thoughtful gift, we want every order
+                    to feel special love it .
+                </p>
+
+                <a href="products.html" class="button">
+                    FIND YOUR FAVOURITE
+                </a>
+            </div>
+
+        </section>
+
+        <section class="section" id="reviews">
+            <div class="section-heading">
+                <span class="eyebrow">SWEET WORDS</span>
+                <h2>What Makes Us Special?</h2>
+                <p>
+                    We want every customer to leave with a smile
+                    and a reason to come back.
+                </p>
+            </div>
+
+            <div class="reviews">
+
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        "The chocolate collection looks absolutely
+                        delicious. The Dubai-style pistachio and
+                        kunafa combination is a must-try!"
+                    </p>
+                    <h3>Chocolate Lover</h3>
+                    <small>Sample review</small>
+                </article>
+
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        "A lovely place to find sweet treats for
+                        celebrations and gifts. The variety makes
+                        choosing a favourite  fun."
+                    </p>
+                    <h3>Dessert Enthusiast</h3>
+                    <small>Sample review</small>
+                </article>
+
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        "Chocolate, cakes and donuts all in one
+                        collection! It is the kind of dessert menu
+                        that makes every occasion feel special."
+                    </p>
+                    <h3>Sweet Tooth</h3>
+                    <small>Sample review</small>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <span class="eyebrow">YOUR NEXT FAVOURITE TREAT AWAITS</span>
+
+            <h2>Make Life a Little Sweeter.</h2>
+
+            <p>
+                Explore our menu, choose your favourite treats
+                and contact us to place an order.
+            </p>
+
+            <a href="products.html" class="button">
+                EXPLORE OUR PRODUCTS
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+
+            <div>
+                <h3>COCOA ROYALE</h3>
+                <p>
+                    A world of handcrafted chocolate, delightful desserts
+                    and sweet celebrations.
+                </p>
+                <p style="margin-top: 12px;">
+                    Replace this text with your factory's actual address,
+                    business hours and contact information before publishing.
+                </p>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Our Products</a>
+                    <a href="#story">Our Story</a>
+                    <a href="#reviews">Reviews</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Get in Touch</h3>
+                <div class="footer-links">
+                    <a href="#contact">Order Enquiries</a>
+                    <a href="#contact">Custom Cakes</a>
+                    <a href="#contact">Chocolate Gifts</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Cocoa Royale. All rights reserved.
+            Made with love and a little chocolate.
+        </div>
+    </footer>
+
 </body>
 </html>
