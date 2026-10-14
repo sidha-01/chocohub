@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Products | Cocoa Royale</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #741c25;
+            --dark-red: #4c1018;
+            --cream: #fff7e9;
+            --gold: #c49a55;
+            --brown: #3d211b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--brown);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .announcement {
+            background: var(--dark-red);
+            color: white;
+            text-align: center;
+            padding: 9px;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        header {
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #eadbc4;
+        }
+
+        .logo {
+            color: var(--red);
+            font-family: 'Playfair Display', serif;
+            font-size: 27px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .logo span {
+            display: block;
+            color: var(--gold);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 23px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 12px 22px;
+            border: 1px solid var(--red);
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .button:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        .page-hero {
+            background:
+                linear-gradient(rgba(53, 12, 17, .82),
+                                rgba(53, 12, 17, .82)),
+                url("https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=1800&q=85")
+                center/cover no-repeat;
+
+            color: white;
+            text-align: center;
+            padding: 90px 7%;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(40px, 6vw, 65px);
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        .page-hero p {
+            color: #f2dfd2;
+            max-width: 650px;
+            margin: auto;
+            font-size: 14px;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            padding: 25px 5%;
+            background: #f2e5d2;
+            border-bottom: 1px solid #e8d6bd;
+        }
+
+        .categories a {
+            border: 1px solid #d8c1a4;
+            padding: 9px 17px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--red);
+            background: white;
+            transition: .3s;
+        }
+
+        .categories a:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        .section {
+            padding: 70px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            color: var(--red);
+            font-size: clamp(30px, 4vw, 43px);
+            margin: 10px 0;
+        }
+
+        .section-heading p {
+            color: #806e61;
+            font-size: 13px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 23px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #eadbc7;
+            transition: .3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(65, 20, 15, .12);
+        }
+
+        .product-card img {
+            height: 220px;
+        }
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .tag {
+            color: #a47a39;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .product-info h3 {
+            font-size: 19px;
+            color: var(--red);
+            margin: 6px 0;
+        }
+
+        .product-info p {
+            font-size: 12px;
+            color: #7c6a5f;
+            min-height: 61px;
+        }
+
+        .price {
+            color: var(--red);
+            font-size: 19px;
+            font-weight: 700;
+            margin: 9px 0 2px;
+        }
+
+        .unit {
+            color: #8b7a6d;
+            font-size: 10px;
+            margin-bottom: 13px;
+        }
+
+        .order-button {
+            display: block;
+            background: var(--red);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .order-button:hover {
+            background: var(--dark-red);
+        }
+
+        .notice {
+            margin-top: 35px;
+            padding: 20px;
+            background: #f2e5d2;
+            border-left: 4px solid var(--gold);
+            color: #6e5849;
+            font-size: 12px;
+        }
+
+        .price-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 520px;
+        }
+
+        .price-table th {
+            background: var(--red);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .price-table td {
+            border-bottom: 1px solid #eadbc7;
+            padding: 13px 15px;
+            font-size: 12px;
+        }
+
+        .price-table tr:hover td {
+            background: #f9eddf;
+        }
+
+        .price-table td:last-child {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .review {
+            background: white;
+            padding: 27px;
+            border: 1px solid #eadbc7;
+        }
+
+        .stars {
+            color: #bd8b37;
+            letter-spacing: 3px;
+        }
+
+        .review p {
+            color: #715e52;
+            font-size: 13px;
+            margin: 13px 0;
+        }
+
+        .review h3 {
+            color: var(--red);
+            font-size: 17px;
+        }
+
+        .review small {
+            color: #8b7a6d;
+            font-size: 11px;
+        }
+
+        .cta {
+            background: var(--red);
+            color: white;
+            text-align: center;
+            padding: 65px 7%;
+        }
+
+        .cta h2 {
+            font-size: 38px;
+            margin: 12px 0;
+        }
+
+        .cta p {
+            color: #f0dcd1;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .cta .button {
+            background: var(--gold);
+            color: var(--dark-red);
+            border-color: var(--gold);
+        }
+
+        footer {
+            background: #321016;
+            color: #f4dfd2;
+            padding: 35px 7% 20px;
+            text-align: center;
+        }
+
+        footer h3 {
+            color: #e5c28b;
+            font-size: 24px;
+        }
+
+        footer p {
+            color: #e4cfc4;
+            font-size: 12px;
+            margin: 9px 0;
+        }
+
+        footer a {
+            color: #e5c28b;
+            font-size: 12px;
+        }
+
+        .copyright {
+            border-top: 1px solid #694047;
+            margin-top: 20px;
+            padding-top: 17px;
+            font-size: 11px;
+        }
+
+        @media (max-width: 1000px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 13px;
+            }
+
+            .page-hero {
+                padding: 65px 5%;
+            }
+
+            .section {
+                padding: 50px 5%;
+            }
+
+            .product-grid,
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card img {
+                height: 270px;
+            }
+
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="announcement">
+        DISCOVER YOUR NEXT FAVOURITE CHOCOLATE
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">
+            COCOA ROYALE
+            <span>CHOCOLATES & PATISSERIE</span>
+        </a>
+
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="#chocolates">CHOCOLATES</a>
+            <a href="#brownies">BROWNIES</a>
+            <a href="#cakes">CAKES</a>
+            <a href="#donuts">DONUTS</a>
+            <a href="#price-list">PRICE LIST</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="page-hero">
+            <span class="eyebrow">A LITTLE SOMETHING DELICIOUS</span>
+
+            <h1>Our Chocolate Boutique</h1>
+
+            <p>
+                Explore a world of smooth chocolate, crunchy fillings,
+                rich brownies, irresistible wafer treats, celebration
+                cakes and beautifully decorated donuts.
+                There is something sweet for everyone.
+            </p>
+        </section>
+
+        <nav class="categories" aria-label="Product categories">
+            <a href="#chocolates">ALL CHOCOLATES</a>
+            <a href="#dubai">DUBAI KUNAFA</a>
+            <a href="#bars">CHOCOLATE BARS</a>
+            <a href="#wafer">WAFER ROLLS</a>
+            <a href="#brownies">BROWNIES</a>
+            <a href="#cakes">CAKES</a>
+            <a href="#donuts">DONUTS</a>
+            <a href="#price-list">PRICE LIST</a>
+        </nav>
+
+        <!-- DUBAI KUNAFA -->
+
+        <section class="section" id="dubai">
+
+            <div class="section-heading">
+                <span class="eyebrow">OUR SIGNATURE CREATION</span>
+                <h2>Dubai Chocolate Collection</h2>
+                <p>
+                    Inspired by the popular combination of chocolate,
+                    pistachio cream and crunchy kunafa.
+                </p>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+                        alt="Dubai-style chocolate dessert"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Signature</span>
+                        <h3>Classic Dubai Kunafa</h3>
+                        <p>
+                            Chocolate shell with pistachio cream
+                            and crispy kunafa-inspired filling.
+                        </p>
+                        <div class="price">₹299</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button"
+                           href="#ordering"
+                           data-product="Classic Dubai Kunafa">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=700&q=85"
+                        alt="Pistachio chocolate treats"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Nutty Luxury</span>
+                        <h3>Dubai Pistachio Bar</h3>
+                        <p>
+                            A chocolate bar featuring a rich pistachio
+                            flavour and a creamy centre.
+                        </p>
+                        <div class="price">₹349</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button"
+                           href="#ordering"
+                           data-product="Dubai Pistachio Bar">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate confectionery"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Creamy Delight</span>
+                        <h3>White Chocolate Kunafa</h3>
+                        <p>
+                            Sweet white chocolate paired with a
+                            crunchy kunafa-inspired filling.
+                        </p>
+                        <div class="price">₹329</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button"
+                           href="#ordering"
+                           data-product="White Chocolate Kunafa">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=700&q=85"
+                        alt="Assorted chocolates"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Rich & Intense</span>
+                        <h3>Dark Kunafa Chocolate</h3>
+                        <p>
+                            Deep cocoa flavour combined with
+                            a crunchy pistachio-style filling.
+                        </p>
+                        <div class="price">₹329</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button"
+                           href="#ordering"
+                           data-product="Dark Kunafa Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CLASSIC CHOCOLATES -->
+
+        <section class="section" id="chocolates">
+
+            <div class="section-heading">
+                <span class="eyebrow">HANDCRAFTED INDULGENCE</span>
+                <h2>Our Chocolate Collection</h2>
+                <p>
+                    Smooth, crunchy, nutty, colourful and filled
+                    with delicious surprises.
+                </p>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card" id="bars">
+                    <img
+                        src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=700&q=85"
+                        alt="Milk chocolate treats"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Classic</span>
+                        <h3>Plain Milk Chocolate</h3>
+                        <p>
+                            A smooth, creamy chocolate bar with
+                            a familiar cocoa flavour.
+                        </p>
+                        <div class="price">₹149</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Plain Milk Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=700&q=85"
+                        alt="White chocolate confectionery"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Creamy</span>
+                        <h3>White Chocolate</h3>
+                        <p>
+                            Sweet, velvety white chocolate
+                            for a melt-in-the-mouth treat.
+                        </p>
+                        <div class="price">₹169</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="White Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=700&q=85"
+                        alt="Dark chocolate treats"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Bold Cocoa</span>
+                        <h3>Dark Chocolate</h3>
+                        <p>
+                            A rich cocoa-forward chocolate for
+                            lovers of intense flavour.
+                        </p>
+                        <div class="price">₹189</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Dark Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate with nuts"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Crunchy</span>
+                        <h3>Chocolate with Nuts</h3>
+                        <p>
+                            Chocolate filled or topped with a
+                            delicious nut selection.
+                        </p>
+                        <div class="price">₹199</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate with Nuts">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=700&q=85"
+                        alt="Plain chocolate bar"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Simple & Smooth</span>
+                        <h3>Plain Chocolate</h3>
+                        <p>
+                            A simple chocolate treat without
+                            added nuts or crunchy fillings.
+                        </p>
+                        <div class="price">₹139</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Plain Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=700&q=85"
+                        alt="Pistachio chocolate"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Premium Nuts</span>
+                        <h3>Pistachio Chocolate</h3>
+                        <p>
+                            Chocolate with pistachio pieces
+                            or a creamy pistachio filling.
+                        </p>
+                        <div class="price">₹229</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Pistachio Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+                        alt="Caramel chocolate dessert"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Caramel Love</span>
+                        <h3>Caramel-Filled Chocolate</h3>
+                        <p>
+                            A chocolate shell with a sweet,
+                            smooth caramel centre.
+                        </p>
+                        <div class="price">₹199</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Caramel-Filled Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate with colourful toppings"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Fun & Colourful</span>
+                        <h3>Sprinkle Chocolate</h3>
+                        <p>
+                            Chocolate topped with colourful
+                            sprinkles for a playful finish.
+                        </p>
+                        <div class="price">₹179</div>
+                        <div class="unit">Per 100 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Sprinkle Chocolate">ORDER NOW</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- WAFER ROLLS -->
+
+        <section class="section" id="wafer">
+
+            <div class="section-heading">
+                <span class="eyebrow">CRUNCH MEETS CHOCOLATE</span>
+                <h2>Chocolate Wafer Rolls</h2>
+                <p>
+                    Light, crispy wafer treats with delicious
+                    chocolate coatings and fillings.
+                </p>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate-coated wafer treats"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Crunchy Classic</span>
+                        <h3>Milk Chocolate Wafer Rolls</h3>
+                        <p>
+                            Crisp wafer rolls covered with
+                            smooth milk chocolate.
+                        </p>
+                        <div class="price">₹129</div>
+                        <div class="unit">Pack of 6 · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Milk Chocolate Wafer Rolls">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate dessert treats"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Nutty Crunch</span>
+                        <h3>Hazelnut Wafer Rolls</h3>
+                        <p>
+                            Chocolate wafer rolls with
+                            a hazelnut-inspired flavour.
+                        </p>
+                        <div class="price">₹149</div>
+                        <div class="unit">Pack of 6 · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Hazelnut Wafer Rolls">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=700&q=85"
+                        alt="Dark chocolate confectionery"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Intense Cocoa</span>
+                        <h3>Dark Chocolate Wafer Rolls</h3>
+                        <p>
+                            Crispy wafer rolls with a rich
+                            dark chocolate coating.
+                        </p>
+                        <div class="price">₹149</div>
+                        <div class="unit">Pack of 6 · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Dark Chocolate Wafer Rolls">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate and caramel dessert"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Sweet Surprise</span>
+                        <h3>Caramel Wafer Rolls</h3>
+                        <p>
+                            Chocolate-covered wafer rolls
+                            with a caramel-inspired filling.
+                        </p>
+                        <div class="price">₹159</div>
+                        <div class="unit">Pack of 6 · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Caramel Wafer Rolls">ORDER NOW</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- BROWNIES -->
+
+        <section class="section" id="brownies">
+
+            <div class="section-heading">
+                <span class="eyebrow">FRESHLY BAKED HAPPINESS</span>
+                <h2>Brownies & Baked Treats</h2>
+                <p>
+                    Rich chocolate flavour, delightful textures
+                    and delicious little moments.
+                </p>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate brownie dessert"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Classic Favourite</span>
+                        <h3>Chocolate Brownie</h3>
+                        <p>
+                            A rich chocolate brownie with
+                            a fudgy texture.
+                        </p>
+                        <div class="price">₹99</div>
+                        <div class="unit">Per piece · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate Brownie">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate dessert cake"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Extra Indulgence</span>
+                        <h3>Chocolate Fudge Brownie</h3>
+                        <p>
+                            A rich chocolate brownie with
+                            a decadent fudge-style finish.
+                        </p>
+                        <div class="price">₹129</div>
+                        <div class="unit">Per piece · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate Fudge Brownie">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate and nuts"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Crunchy Treat</span>
+                        <h3>Walnut Brownie</h3>
+                        <p>
+                            A chocolate brownie with crunchy
+                            walnut pieces.
+                        </p>
+                        <div class="price">₹119</div>
+                        <div class="unit">Per piece · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Walnut Brownie">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1548907040-4d42faa2e7f0?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate dessert"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Creamy Finish</span>
+                        <h3>Brownie with Chocolate Sauce</h3>
+                        <p>
+                            A chocolate brownie served with
+                            a rich chocolate-style topping.
+                        </p>
+                        <div class="price">₹149</div>
+                        <div class="unit">Per serving · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Brownie with Chocolate Sauce">ORDER NOW</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CAKES -->
+
+        <section class="section" id="cakes">
+
+            <div class="section-heading">
+                <span class="eyebrow">CELEBRATE BEAUTIFULLY</span>
+                <h2>Cakes for Every Occasion</h2>
+                <p>
+                    Make birthdays, anniversaries and celebrations
+                    sweeter with a beautiful cake.
+                </p>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate celebration cake"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Chocolate Lovers</span>
+                        <h3>Chocolate Truffle Cake</h3>
+                        <p>
+                            A chocolate cake with a rich
+                            truffle-style finish.
+                        </p>
+                        <div class="price">₹650</div>
+                        <div class="unit">500 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate Truffle Cake">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate layer cake"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Premium</span>
+                        <h3>Chocolate Fudge Cake</h3>
+                        <p>
+                            A rich chocolate cake with
+                            smooth fudge-style layers.
+                        </p>
+                        <div class="price">₹750</div>
+                        <div class="unit">500 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate Fudge Cake">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate and cream cake"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Soft & Creamy</span>
+                        <h3>Chocolate Cream Cake</h3>
+                        <p>
+                            Chocolate cake layered with
+                            a smooth cream filling.
+                        </p>
+                        <div class="price">₹600</div>
+                        <div class="unit">500 g · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate Cream Cake">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85"
+                        alt="Celebration chocolate cake"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Made for Moments</span>
+                        <h3>Custom Celebration Cake</h3>
+                        <p>
+                            Personalised cakes for birthdays
+                            and special celebrations.
+                        </p>
+                        <div class="price">From ₹800</div>
+                        <div class="unit">Starting price · Sample</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Custom Celebration Cake">ORDER NOW</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- DONUTS -->
+
+        <section class="section" id="donuts">
+
+            <div class="section-heading">
+                <span class="eyebrow">LITTLE RINGS OF HAPPINESS</span>
+                <h2>Our Donut Collection</h2>
+                <p>
+                    Chocolate-dipped, glazed and sprinkled
+                    treats for every sweet tooth.
+                </p>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate glazed donuts"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Classic</span>
+                        <h3>Chocolate Glazed Donut</h3>
+                        <p>
+                            A soft donut with a smooth
+                            chocolate-style glaze.
+                        </p>
+                        <div class="price">₹79</div>
+                        <div class="unit">Per piece · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate Glazed Donut">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate sprinkle donuts"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Colourful</span>
+                        <h3>Sprinkle Donut</h3>
+                        <p>
+                            A delightful donut topped with
+                            colourful sprinkles.
+                        </p>
+                        <div class="price">₹89</div>
+                        <div class="unit">Per piece · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Sprinkle Donut">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate-filled donuts"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Creamy Centre</span>
+                        <h3>Chocolate-Filled Donut</h3>
+                        <p>
+                            A soft donut with a delicious
+                            chocolate-style filling.
+                        </p>
+                        <div class="price">₹99</div>
+                        <div class="unit">Per piece · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate-Filled Donut">ORDER NOW</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=85"
+                        alt="Chocolate dipped donuts"
+                        loading="lazy">
+
+                    <div class="product-info">
+                        <span class="tag">Premium Treat</span>
+                        <h3>Chocolate Dipped Donut</h3>
+                        <p>
+                            A delicious donut finished with
+                            a chocolate coating.
+                        </p>
+                        <div class="price">₹109</div>
+                        <div class="unit">Per piece · Sample price</div>
+                        <a class="order-button" href="#ordering"
+                           data-product="Chocolate Dipped Donut">ORDER NOW</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- PRICE LIST -->
+
+        <section class="section" id="price-list">
+
+            <div class="section-heading">
+                <span class="eyebrow">YOUR SWEET SHOPPING GUIDE</span>
+                <h2>Our Price List</h2>
+                <p>
+                    A quick overview of our suggested starting prices.
+                </p>
+            </div>
+
+            <div class="price-table-wrapper">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Classic Dubai Kunafa Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹299</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dubai Pistachio Bar</td>
+                            <td>100 g</td>
+                            <td>₹349</td>
+                        </tr>
+
+                        <tr>
+                            <td>White Chocolate Kunafa</td>
+                            <td>100 g</td>
+                            <td>₹329</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dark Kunafa Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹329</td>
+                        </tr>
+
+                        <tr>
+                            <td>Plain Milk Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹149</td>
+                        </tr>
+
+                        <tr>
+                            <td>White Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹169</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dark Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹189</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate with Nuts</td>
+                            <td>100 g</td>
+                            <td>₹199</td>
+                        </tr>
+
+                        <tr>
+                            <td>Pistachio Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹229</td>
+                        </tr>
+
+                        <tr>
+                            <td>Caramel-Filled Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹199</td>
+                        </tr>
+
+                        <tr>
+                            <td>Sprinkle Chocolate</td>
+                            <td>100 g</td>
+                            <td>₹179</td>
+                        </tr>
+
+                        <tr>
+                            <td>Milk Chocolate Wafer Rolls</td>
+                            <td>Pack of 6</td>
+                            <td>₹129</td>
+                        </tr>
+
+                        <tr>
+                            <td>Hazelnut Wafer Rolls</td>
+                            <td>Pack of 6</td>
+                            <td>₹149</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate Brownie</td>
+                            <td>1 piece</td>
+                            <td>₹99</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate Fudge Brownie</td>
+                            <td>1 piece</td>
+                            <td>₹129</td>
+                        </tr>
+
+                        <tr>
+                            <td>Walnut Brownie</td>
+                            <td>1 piece</td>
+                            <td>₹119</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate Truffle Cake</td>
+                            <td>500 g</td>
+                            <td>₹650</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate Fudge Cake</td>
+                            <td>500 g</td>
+                            <td>₹750</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate Cream Cake</td>
+                            <td>500 g</td>
+                            <td>₹600</td>
+                        </tr>
+
+                        <tr>
+                            <td>Custom Celebration Cake</td>
+                            <td>Starting price</td>
+                            <td>₹800</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate Glazed Donut</td>
+                            <td>1 piece</td>
+                            <td>₹79</td>
+                        </tr>
+
+                        <tr>
+                            <td>Sprinkle Donut</td>
+                            <td>1 piece</td>
+                            <td>₹89</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate-Filled Donut</td>
+                            <td>1 piece</td>
+                            <td>₹99</td>
+                        </tr>
+
+                        <tr>
+                            <td>Chocolate Dipped Donut</td>
+                            <td>1 piece</td>
+                            <td>₹109</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="notice">
+                <strong>Price information:</strong>
+                All prices are illustrative and should be updated
+                before publishing. Actual prices may vary depending on
+                ingredients, product weight, packaging and customisation.
+                Confirm availability, delivery charges and final prices
+                with the factory before placing an order.
+            </div>
+
+        </section>
+
+        <!-- CUSTOMER REVIEWS -->
+
+        <section class="section" id="reviews">
+
+            <div class="section-heading">
+                <span class="eyebrow">LOVE AT FIRST BITE</span>
+                <h2>Sweet Words from Our Customers</h2>
+                <p>
+                    Our goal is to make every chocolate experience
+                    memorable.
+                </p>
+            </div>
+
+            <div class="reviews">
+
+                <article class="review">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        "The Dubai chocolate combination sounds
+                        absolutely delicious. I love the idea of
+                        having so many different fillings to choose from.love it"
+                    </p>
+                    <h3>Chocolate Enthusiast</h3>
+                    <small>Illustrative sample review</small>
+                </article>
+
+                <article class="review">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        "The menu has something for everyone, from
+                        classic chocolate bars to brownies and
+                        celebration cakes."
+                    </p>
+                    <h3>Dessert Fan</h3>
+                    <small>Illustrative sample review</small>
+                </article>
+
+                <article class="review">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        "A beautiful concept for chocolate lovers.
+                        The pistachio, caramel and wafer combinations
+                        sound especially tempting."
+                    </p>
+                    <h3>Sweet Tooth</h3>
+                    <small>Illustrative sample review</small>
+                </article>
+
+            </div>
+
+            <div class="notice">
+                These are sample testimonials for the website design,
+                not verified customer reviews. Replace them with genuine
+                feedback from your actual customers before publishing.
+            </div>
+
+        </section>
+
+        <!-- ORDERING INFORMATION -->
+
+        <section class="cta" id="ordering">
+
+            <span class="eyebrow">LET'S MAKE YOUR DAY SWEETER</span>
+
+            <h2>Found Your Favourite?</h2>
+
+            <p>
+                Contact us to enquire about products, custom orders,
+                availability and delivery.
+            </p>
+
+            <!-- Replace 91XXXXXXXXXX with your WhatsApp number.
+                 Use country code + number, without + or spaces. -->
+
+            <a href="https://wa.me/91XXXXXXXXXX"
+               class="button"
+               target="_blank"
+               rel="noopener noreferrer">
+                CONTACT US ON WHATSAPP
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>COCOA ROYALE</h3>
+
+        <p>
+            Luxury chocolates, beautiful desserts
+            and little moments of happiness.
+        </p>
+
+        <p>
+            Replace this section with your actual business address,
+            phone number and opening hours.
+        </p>
+
+        <a href="index.html">← BACK TO HOMEPAGE</a>
+
+        <div class="copyright">
+            © 2026 Cocoa Royale. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const whatsappNumber = "91XXXXX464XX";
+
+        document.querySelectorAll(".order-button").forEach(button => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                const product = this.dataset.product;
+
+                if (whatsappNumber === "91XXXXXXXXXX") {
+                    alert(
+                        "Please add your real WhatsApp number " +
+                        "to the products.html code before accepting orders."
+                    );
+                    return;
+                }
+
+                const message =
+                    "Hello Cocoa Royale! I would like to enquire about " +
+                    product + ". Please share the availability and final price.";
+
+                const url =
+                    "https://wa.me/" + whatsappNumber +
+                    "?text=" + encodeURIComponent(message);
+
+                window.open(url, "_blank", "noopener,noreferrer");
+            });
+        });
+    </script>
+
+</body>
+</html>
